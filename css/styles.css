@@ -1,0 +1,246 @@
+body {
+  gap: 30px;
+  background-image: url('../assets/img/10_background_body/desert.png');
+  background-size: cover;
+  margin-top: 0px;
+  background-position: center;
+}
+
+canvas {
+  display: none;
+  background-color: black;
+  border: 10px solid rgb(145, 60, 23);
+}
+
+.game-menu-buttons {
+  position: absolute;
+  margin-top:-380px;
+  width:760px;
+  gap: 10px;
+  padding-right: 80px;
+
+}
+
+.fullscreen {
+  fill: rgb(255, 215, 6);
+}
+
+.audio-icon {
+  fill: rgb(255, 215, 6);
+}
+
+.panel-div {
+  padding: 10px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-color: rgb(255, 215, 6);
+  border: 2px solid rgb(145, 60, 23);
+}
+
+.game-panels {
+  position: absolute;
+  bottom: 80px;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.panel-arrow {
+  padding: 1px 0;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: rgb(145, 60, 23);
+  stroke-width: 10;
+}
+
+.arrow-left {
+  padding-left: 3px;
+}
+
+.arrow-right {
+  padding-right: 3px;
+}
+
+.arrow-up {
+  padding: 0px 2px;
+  padding-top: 3px;
+}
+
+.curved-right-arrow {
+  fill: none;
+  stroke: rgb(145, 60, 23);
+  stroke-width: 10;
+  width: 20px;
+  height: 20px;
+}
+
+.panel-img-throw {
+  width: 20px;
+  height: 20px;
+}
+
+.menu-img-icon {
+  padding: 1px 0;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: rgb(145, 60, 23);
+  stroke-width: 10;
+}
+
+.img-icon-keyboard {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  padding-bottom: 2px;
+}
+
+.img-icon-break {
+  width: 30px;
+  height: 30px;
+}
+
+.img-icon-exit {
+  padding: 0;
+  padding-left: 4px;
+}
+
+#gamePanels {
+  display: none;
+}
+
+.popup-frame {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#popupFrame {
+  display: none;
+}
+
+#popupFrameStory {
+  display: none;
+}
+
+.popup-content-div {
+  position:relative;
+  z-index: 9999;
+  margin-top:50px;
+  width: 780px;
+  height: 600px;
+  border: 10px solid rgb(145, 60, 23);
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.popup-content-headline {
+  letter-spacing: 6px;
+  font-size: 36px;
+  text-transform: uppercase;
+  color: black;
+}
+
+.popup-content-close-btn {
+  border: 3px solid rgb(145, 60, 23);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.popup-content-close-btn p {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 5px;
+  margin-bottom: 3px;
+  letter-spacing: 6px;
+  font-size: 24px;
+  color: rgb(145, 60, 23);
+}
+
+.popup-content-keys p {
+  letter-spacing: 4px;
+  font-size: 24px;
+  line-height: 28px;
+  color: black;
+}
+
+.user-key-style {
+  text-decoration: underline;
+  /* cursor:pointer; */
+}
+
+#gameMenuButtons {
+  display: none;
+}
+
+.menu-screen {
+  background-color: white;
+  border: 10px solid rgb(145, 60, 23);
+  height: 480px;
+  width: 760px;
+  background-image: url('../assets/img/9_intro_outro_screens/start/startscreen_1.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.menu-settings-btn {
+  background-color: rgb(255, 215, 6);
+  padding: 10px;
+  border: 3px solid rgb(164, 61, 23);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#continuePlayBtnMenu {
+  display: none;
+}
+
+#restartBtnMenu {
+  display: none;
+}
+
+#contentFooterLinks {
+  display: none;
+  width: 780px;
+  height: 500px;
+  border: 10px solid rgb(145, 60, 23);
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.content-footer-text {
+  overflow-y: auto;
+}
+
+#orientationWarning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  z-index: 9999;
+}
+
+#rotateIcon {
+  max-width: 20%;
+  height: auto;
+  margin-bottom: 20px;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);
+}
+
+#orientationWarning p {
+  font-size: 1.2em;
+}

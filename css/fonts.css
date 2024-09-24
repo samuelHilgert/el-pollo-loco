@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'Zabars';
+    src: url('../assets/fonts/zabars.ttf') format('truetype');
+}
+
+body {
+    font-family: "Zabars", Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 8px;
+    font-size: 68px;
+    margin: 0;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+    text-shadow: 10px 10px 10px rgb(46, 46, 46);
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 4px;
+    font-size: 12px;
+    margin: 0;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+    text-shadow: 10px 10px 10px rgb(46, 46, 46);
+}
+
+.a-style {
+    color: rgb(255, 215, 6);
+    text-decoration: none;
+}
+
+.a-style:visited {
+    cursor:pointer;
+    color: rgb(255, 215, 6);
+    text-decoration:none;
+}
+
+.a-style:hover {
+    cursor:pointer;
+    color: rgb(145, 60, 23);
+    text-decoration:underline;
+}
+
+.content-footer-text h1,
+.content-footer-text h2,  
+.content-footer-text p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: 2px;
+    font-size: 18px;
+    margin: 15px 0;
+    text-transform: none;
+    color: black; 
+    text-shadow: none;
+    text-align:left;
+}
+
+.content-footer-text p {
+    letter-spacing: 0px;
+    font-size: 12px;
+    margin: 0;
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="de" trasnlate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+    <link rel="icon" href="assets/img/6_salsa_bottle/salsa_bottle.png" type="image/png">
+    <link rel="shortcut icon" href="assets/img/6_salsa_bottle/salsa_bottle.png" type="image/png">
+    <title>El Pollo Loco</title>
+    <script src="classes/drawable-object.class.js"></script>
+    <script src="classes/movable-object.class.js"></script>
+    <script src="classes/character.class.js"></script>
+    <script src="classes/chicken.class.js"></script>
+    <script src="classes/cloud.class.js"></script>
+    <script src="classes/status-bar.class.js"></script>
+    <script src="classes/status-bar-bottles.class.js"></script>
+    <script src="classes/status-bar-coins.class.js"></script>
+    <script src="classes/status-bar-endboss.class.js"></script>
+    <script src="classes/coins.class.js"></script>
+    <script src="classes/bottles.class.js"></script>
+    <script src="classes/renderer.class.js"></script>
+    <script src="classes/background-generate.class.js"></script>
+    <script src="classes/collision-manager.class.js"></script>
+    <script src="classes/world.class.js"></script>
+    <script src="classes/background-object.class.js"></script>
+    <script src="classes/keyboard.class.js"></script>
+    <script src="classes/throwable-object.class.js"></script>
+    <script src="classes/level.class.js"></script>
+    <script src="classes/endboss.class.js"></script>
+    <script src="levels/level1.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/game-menu.js"></script>
+    <script src="js/handling-keypress.js"></script>
+    <link rel="stylesheet" href="css/standard.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body class="d_c_fs_c pad-y-40" onload="includeHTML()">
+    <h1 class="mobile">El Pollo Loco</h1>
+
+    <div id="orientationWarning">
+        <img id="rotateIcon" src="assets/img/13_else/rotate.png" alt="Rotate your device">
+        <p>Please rotate your device to landscape mode.</p>
+    </div>
+
+    <div class="d_f_c_c" id="fullscreenMode">
+        <div class="d_f_fe_c game-menu-buttons" id="gameMenuButtons">
+            <!-- break -->
+            <div class="d_c_c_c panel-div" id="menuIconActivateBreak" onclick="clickMenuIcon('break')">
+                <img class="menu-img-icon  img-icon-break" src="assets/img/11_menu/break.png" id="switchPlayIcon"
+                    alt="Spiel pausieren/fortsetzen">
+            </div>
+
+            <!-- set sound -->
+            <div class="d_c_c_c panel-div" id="menuIconSwitchSound" onclick="clickMenuIcon('sound')">
+                <img class="menu-img-icon img-icon-sound" src="assets/img/11_menu/sound-off.png" id="switchSoundIcon"
+                    alt="Sound ein-/ausschalten">
+            </div>
+
+            <!-- set keyboard -->
+            <div class="d_c_c_c panel-div" id="menuIconKeyboardSettings" onclick="clickMenuIcon('keyboard')">
+                <img class="menu-img-icon  img-icon-keyboard" src="assets/img/11_menu/keyboard.png"
+                    alt="Tasten vergeben">
+            </div>
+
+            <!-- fullscreen -->
+            <div class="d_c_c_c panel-div" id="menuIconActivateFullscreen" onclick="clickMenuIcon('fullscreen')">
+                <img class="menu-img-icon  img-icon-fullscreen" src="assets/img/11_menu/fullscreen.png"
+                    alt="Fullscreen aktivieren">
+            </div>
+
+            <!-- exit -->
+            <div class="d_c_c_c panel-div" id="menuIconLeaveGame" onclick="clickMenuIcon('exit')">
+                <img class="menu-img-icon  img-icon-exit" src="assets/img/11_menu/exit.png" alt="Spiel verlassen">
+            </div>
+        </div>
+
+
+        <!-- popup for keyboard settings -->
+        <div class="d_f_c_c popup-frame" id="popupFrame" onclick="closePopup()">
+            <div class="d_c_fs_c popup-content-div pad-y-20 gap-40" id="popupContentDiv" onclick="doNotClose(event)">
+
+                <div class="d_f_sb_c width-max pad-x-40">
+                    <p class="popup-content-headline">Key assignment</p>
+                    <div class="popup-content-close-btn d_f_c_c" onclick="closePopup()">
+                        <p>x</p>
+                    </div>
+                </div>
+
+                <div class="d_f_fs_fs popup-content-keys gap-20 width-max pad-x-40">
+                    <p>LEFT</p>
+                    <p>=</p>
+                    <p class="user-key-style">A</p>
+                    <p>or</p>
+                    <p class="user-key-style">ArrowLeft</p>
+                </div>
+
+                <div class="d_f_fs_fs popup-content-keys gap-20 width-max pad-x-40">
+                    <p>RIGHT</p>
+                    <p>=</p>
+                    <p class="user-key-style">D</p>
+                    <p>or</p>
+                    <p class="user-key-style">ArrowRight</p>
+                </div>
+
+                <div class="d_f_fs_fs popup-content-keys gap-20 width-max pad-x-40">
+                    <p>JUMP</p>
+                    <p>=</p>
+                    <p class="user-key-style">W</p>
+                    <p>or</p>
+                    <p class="user-key-style">ArrowUp</p>
+                </div>
+
+                <div class="d_f_fs_fs popup-content-keys gap-20 width-max pad-x-40">
+                    <p>THROW</p>
+                    <p>=</p>
+                    <p class="user-key-style">Space</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- panel buttons -->
+        <div class="d_f_sb_c game-panels" id="gamePanels">
+
+            <!-- panel buttons left -->
+            <div class="d_f_c_c gap-10">
+                <div class="d_c_c_c panel-div" id="panelBtnLeft">
+                    <svg class="panel-arrow arrow-left" viewBox="0 0 100 100">
+                        <polyline points="60,10 20,50 60,90" />
+                    </svg>
+                </div>
+
+                <!-- panel buttons right -->
+                <div class="d_c_c_c panel-div" id="panelBtnRight">
+                    <svg class="panel-arrow arrow-right" viewBox="0 0 100 100">
+                        <polyline points="40,10 80,50 40,90" />
+                    </svg>
+                </div>
+            </div>
+
+
+            <!-- panel buttons jump -->
+            <div class="d_f_c_c gap-10">
+                <div class="d_c_c_c panel-div" id="panelBtnJump">
+                    <svg class="panel-arrow arrow-up" viewBox="0 0 100 100">
+                        <polyline points="10,60 50,20 90,60" />
+                    </svg>
+                </div>
+
+                <!-- panel buttons throw -->
+                <div class="d_c_c_c panel-div" id="panelBtnThrow">
+                    <img class="panel-img-throw" src="assets/img/12_panels/bottle.png">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="menu-screen d_c_fs_fe" include-html="assets/templates/menu-screen.html" id="menuScreen"></div>
+
+        <canvas width="760px" height="480px" id="canvas">
+        </canvas>
+
+        <!-- popup for keyboard settings -->
+        <div class="d_f_c_c popup-frame" id="popupFrameStory" onclick="closePopup()">
+            <div class="d_c_fs_c popup-content-div pad-y-20 gap-40" id="popupContentDivStory"
+                onclick="doNotClose(event)">
+
+                <div class="d_f_sb_c width-max pad-x-40">
+                    <p class="popup-content-headline">Pepes Story</p>
+                    <div class="popup-content-close-btn d_f_c_c" onclick="closePopup()">
+                        <p>x</p>
+                    </div>
+                </div>
+
+                <div class="d_c_fs_fs popup-content-keys gap-20 width-max pad-x-40">
+                    <p>Pepe eilte in der Hitze der mexikanischen Wüste zu seinem Bauernhof und blieb erschrocken stehen.
+                        Überall lagen Tabasco-Flaschen und Münzen verstreut.
+                        "Oh noo! Es sieht so aus, als wären meine Hühner ausgebrochen!" rief er aus.
+                        "Haben sie etwa...?" fragte er sich ungläubig.
+                        Die Hühner hatten ein regelrechtes Chaos angerichtet.
+                        Pepe ballte die Fäuste. "Na wartet, euch werde ich es zeigen!" sagte er entschlossen und griff
+                        nach den verstreuten Tabasco-Flaschen,
+                        die nun seine Waffe im Kampf gegen die rebellischen Hühner werden sollten.
+                        Mit festem Entschluss macht sich Pepe nun auf den Weg, um seine Hühner und sein Hab und Gut
+                        zurückzubringen.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- div content for footerlinks -->
+        <div class="content-footer-links d_c_fs_fs pad-y-20 pad-x-20" id="contentFooterLinks">
+        </div>
+
+    </div>
+
+    <!-- footer -->
+    <div class="d_f_c_c width-50 mobile" id="footerLinks">
+        <h2><a class="a-style" onclick="openFooterLink('game-menu')">Menu</a>
+            or Check our
+            <a class="a-style" onclick="openFooterLink('privacy-policy')">Privacy Policy</a>
+            and
+            <a class="a-style" onclick="openFooterLink('imprint')">Imprint</a>
+        </h2>
+    </div>
+
+    <script>
+        // Überprüfen Sie die Ausrichtung beim Laden der Seite
+        window.addEventListener('load', checkOrientation);
+
+        // Überwachen Sie Änderungen der Ausrichtung
+        window.addEventListener('resize', checkOrientation);
+        
+    </script>
+
+</body>
+
+</html>
